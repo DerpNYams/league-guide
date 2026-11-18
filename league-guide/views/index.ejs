@@ -1,0 +1,29 @@
+<%- include("partials/header") %>
+<section class="hero">
+  <div>
+    <p class="eyebrow">Made by a League player</p>
+    <h1>Simple champion guides.</h1>
+    <p>Look through basic League of Legends tips for different champions and roles.</p>
+    <a class="button" href="#events">Browse guides</a>
+  </div>
+</section>
+
+<section id="events" class="section">
+  <div class="section-heading">
+    <div><p class="eyebrow">Public preview</p><h2>Champion guides</h2></div>
+    <a href="/contact">Suggest a champion</a>
+  </div>
+  <% if (!posts.length) { %><p>No public guides are available right now.</p><% } %>
+  <div class="card-grid">
+    <% posts.forEach(post => { %>
+      <article class="card">
+        <span class="tag"><%= post.category || "Campus" %></span>
+        <h3><%= post.title %></h3>
+        <p class="event-meta">Updated <%= new Date(post.date + "T12:00:00").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) %> · <%= post.location %></p>
+        <p><%= post.summary %></p>
+        <a href="/events/<%= post.id %>">View details →</a>
+      </article>
+    <% }) %>
+  </div>
+</section>
+<%- include("partials/footer") %>

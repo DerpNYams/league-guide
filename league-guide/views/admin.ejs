@@ -1,0 +1,37 @@
+<%- include("partials/header") %>
+<section class="section">
+  <div class="section-heading">
+    <div><p class="eyebrow">Admin features</p><h1>Guide dashboard</h1></div>
+    <a class="button" href="/admin/events/new">Add guide</a>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Guide</th><th>Updated</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody>
+        <% posts.forEach(post => { %>
+          <tr>
+            <td><strong><%= post.title %></strong><br><small><%= post.location %></small></td>
+            <td><%= post.date %></td>
+            <td><span class="tag"><%= post.published ? "Public" : "Draft" %></span></td>
+            <td class="actions">
+              <a href="/events/<%= post.id %>">Preview</a>
+              <a href="/admin/events/<%= post.id %>/edit">Edit</a>
+              <form action="/admin/events/<%= post.id %>/delete" method="post" onsubmit="return confirm('Delete this guide?')">
+                <button class="link-danger" type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="messages-heading">Contact messages</h2>
+  <% if (!messages.length) { %><p>No messages yet.</p><% } %>
+  <div class="card-grid">
+    <% messages.slice().reverse().forEach(message => { %>
+      <article class="card"><h3><%= message.name %></h3><p class="event-meta"><%= message.email %></p><p><%= message.message %></p></article>
+    <% }) %>
+  </div>
+</section>
+<%- include("partials/footer") %>

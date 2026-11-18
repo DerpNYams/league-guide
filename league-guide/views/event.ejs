@@ -1,0 +1,13 @@
+<%- include("partials/header") %>
+<section class="section narrow">
+  <a href="/">← Back to guides</a>
+  <p class="eyebrow"><%= post.category || "Champion guide" %></p>
+  <h1><%= post.title %></h1>
+  <div class="detail-box">
+    <p><strong>Last updated:</strong> <%= new Date(post.date + "T12:00:00").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) %></p>
+    <p><strong>Difficulty:</strong> <%= post.location %></p>
+    <p><%= post.summary %></p>
+  </div>
+  <a class="button" href="/contact">Suggest a guide</a>
+</section>
+<%- include("partials/footer") %>

@@ -1,0 +1,18 @@
+<%- include("partials/header") %>
+<section class="section narrow">
+  <a href="/admin">← Back to dashboard</a>
+  <form action="<%= formAction %>" method="post" class="panel">
+    <p class="eyebrow">Admin content editor</p>
+    <h1><%= post ? "Edit guide" : "Add guide" %></h1>
+    <label>Guide title<input name="title" required maxlength="100" value="<%= post ? post.title : '' %>"></label>
+    <div class="form-row">
+      <label>Updated date<input type="date" name="date" required value="<%= post ? post.date : '' %>"></label>
+      <label>Role<input name="category" maxlength="40" placeholder="Mid Lane" value="<%= post ? post.category : '' %>"></label>
+    </div>
+    <label>Difficulty<input name="location" maxlength="100" placeholder="Beginner Friendly" value="<%= post ? post.location : '' %>"></label>
+    <label>Guide and tips<textarea name="summary" rows="6" required maxlength="700"><%= post ? post.summary : '' %></textarea></label>
+    <label class="checkbox"><input type="checkbox" name="published" <%= post && post.published ? "checked" : "" %>> Show on public page</label>
+    <button class="button" type="submit"><%= post ? "Save changes" : "Add guide" %></button>
+  </form>
+</section>
+<%- include("partials/footer") %>

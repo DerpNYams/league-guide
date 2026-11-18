@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Simple League of Legends champion guides">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">League Guide</a>
+    <nav aria-label="Main navigation">
+      <a href="/">Guides</a>
+      <a href="/contact">Contact</a>
+      <% if (isAdmin) { %>
+        <a href="/admin">Dashboard</a>
+        <form action="/logout" method="post" class="inline-form"><button class="nav-button">Log out</button></form>
+      <% } else { %>
+        <a href="/login">Admin</a>
+      <% } %>
+    </nav>
+  </header>
+  <% if (notice) { %><div class="notice" role="status"><%= notice %></div><% } %>
+  <main>
